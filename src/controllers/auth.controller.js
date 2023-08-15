@@ -45,6 +45,7 @@ export const login = async (req,res) => {
 
         res.cookie("token", token)
         res.json({
+            message: "Conectado",
             id: userFound._id,
             username: userFound.username,
             email: userFound.email
@@ -54,3 +55,10 @@ export const login = async (req,res) => {
         res.status(500).json({ message: error.message })
     }
 };
+
+export const logout = async (req, res) => {
+    res.cookie("token", "", {
+      expires: new Date(0),
+    });
+    return res.status(200).json({message:"Usuario desconectado"});
+  };
