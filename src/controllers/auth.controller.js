@@ -62,3 +62,18 @@ export const logout = async (req, res) => {
     });
     return res.status(200).json({message:"Usuario desconectado"});
   };
+
+export const profile = async (req, res) => {
+    const userFound = await User.findById(req.user.id)
+
+    if (!userFound)
+        return res.status(400).json({ message: "Usuario no encontrado"})
+
+    return res.json({
+        id: userFound.id,
+        username: userFound.username,
+        email: userFound.email,
+        createdAt: userFound.createdAt,
+        updatedAt: userFound.updatedAt
+    })
+}  
