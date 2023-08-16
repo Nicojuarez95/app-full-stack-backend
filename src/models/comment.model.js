@@ -10,6 +10,8 @@ const commentSchema = new mongoose.Schema({
         ref: "User",
         required: true
     }
-})
+}, {
+    timestamps:true
+ })
 
 export default mongoose.model("Comment", commentSchema)
